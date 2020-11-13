@@ -19,7 +19,7 @@ public class TicketList {
             return "ERROR: Number of Records in a request must be > 0";
         }
 
-        LOGGER.info("Processing your Request, Please Wait...");
+        LOGGER.info("Processing your Request, Please Wait...\n");
         HttpRequest httpRequest = new HttpRequest();
         String parameters = "?page=" + pageNumber + "&per_page=" + ticketsPerPage;
         String response = httpRequest.get(ROUTE, parameters); // json string.
@@ -56,18 +56,17 @@ public class TicketList {
         if (str.length() >50) {
             str = str.substring(0, 46) + "...";
         }
-        //Align left
         System.out.format("| %-10s | %-10s | %-50s | %-10s | %-25s |\n", ticket.id+"", ticket.type, str, ticket.priority, ticket.createdAt);
     }
 
     private void displayHeadline() {
-        System.out.println(" ------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(" ------------------------------------------------------------------------------------------------------------------------");
         //Align left
         System.out.format("| %-10s | %-10s | %-50s | %-10s | %-25s |\n", "ID", "Type", "Subject", "Priority", "Created");
-        System.out.println(" ------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(" ------------------------------------------------------------------------------------------------------------------------");
     }
 
     private void displayFooter() {
-        System.out.println(" ------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(" ------------------------------------------------------------------------------------------------------------------------");
     }
 }

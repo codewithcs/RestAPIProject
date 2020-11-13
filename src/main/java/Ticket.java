@@ -23,7 +23,7 @@ public class Ticket {
             return "ERROR: ID must be > 0";
         }
 
-        LOGGER.info("Processing your request, please wait...");
+        LOGGER.info("Processing your request, please wait...\n");
         HttpRequest httpRequest = new HttpRequest();
         String url = route + "/" + ticketId + ".json";
         String response = httpRequest.get(url, null);
@@ -45,23 +45,19 @@ public class Ticket {
 
     void displayTicketData(){
         System.out.format("\n %66s \n", "** Displaying ticket number " + this.id + " **");
-        System.out.println(" ------------------------------------------------------------------------------------------------------------------------------------");
-        //Subject align left, createdAt align right
+        System.out.println(" ------------------------------------------------------------------------------------------------------------------------");
         System.out.format("| Subject: %-82s  Created at: %-25s |\n", this.subject, this.createdAt);
         System.out.format("|%-132s|\n| Description: %-116s  |\n", " ","");
-        //Handle Description content
         int length = this.description.length();
-        //Description is short, and fit 1 row
         if(length <= 130) {
             System.out.format("| %-130s |\n", this.description);
         }
-        //Description is too long, need text wrapping
         ArrayList<String> descWrapped = WrapTextFullWords(this.description, 130);
         for (int i=0; i< descWrapped.size(); i++) {
             System.out.format("| %-130s |\n", descWrapped.get(i));
         }
 
-        System.out.println(" ------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(" ------------------------------------------------------------------------------------------------------------------------");
     }
 
     private ArrayList<String> WrapTextFullWords (String str, int maxLength) {
@@ -82,5 +78,4 @@ public class Ticket {
         result.add(line);
         return result;
     }
-
 }

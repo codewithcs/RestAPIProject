@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Logger;
 
 public class TicketViewer {
     public static final int PER_PAGE = 25;
@@ -9,6 +10,7 @@ public class TicketViewer {
     public static String response;
     public static boolean hasNext = false, hasPrev = false;
     public static boolean displayOptions = true;
+    static final Logger LOGGER = Logger.getLogger(HttpRequest.class.getName());
 
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -23,46 +25,41 @@ public class TicketViewer {
                 switch(userInput) {
 
                     case "1": {
-                        //Gate ticket list of 25 tickets
                         showTickets(page);
                         break;
                     }
                     case "n": {
                         if(hasNext != false) {
                             page++;
-                            //Gate ticket list of 25 tickets
                             showTickets(page);
-                        }
-                        else {
-                            System.out.println("INPUT ERROR: Cannot navigate to the next page");
+                        } else {
+                            LOGGER.info("INPUT ERROR: Cannot navigate to the next page\n");
+                            System.out.println("Type 'p' to move to the previous page");
+                            System.out.println("Type 'quit' to exit");
                         }
                         break;
                     }
-                    //Navigate to previous page, available only in list view
                     case "p": {
                         if(hasPrev != false && page>1) {
                             page--;
-                            //Gate ticket list of 25 tickets
                             showTickets(page);
-                        }
-                        else {
-                            System.out.println("INPUT ERROR: Cannot navigate to the previous page");
+                        } else {
+                            LOGGER.info("INPUT ERROR: Cannot navigate to the previous page");
+                            System.out.println("Type 'n' to move to the next page");
+                            System.out.println("Type 'quit' to exit");
                         }
                         break;
                     }
-                    //Exit
                     case "quit": {
-                        System.out.println("Thank you for using Ticket Viewer. Hope you enjoyed our service");
+                        LOGGER.info("Thank you for using Ticket Viewer. Hope you enjoyed our service");
                         return;
                     }
                     default:
-                        System.out.println("INVALID INPUT: Please Try Again");
+                        LOGGER.info("INVALID INPUT: Please Try Again");
                 }
             }
             catch (IOException e) {
-                System.out.println("ERROR: An error occured while reading input");
-                System.out.println(e.getMessage());
-                System.out.println(e.getStackTrace());
+                LOGGER.severe("ERROR: An error occurred while reading input " + e);
             }
         }
     }
