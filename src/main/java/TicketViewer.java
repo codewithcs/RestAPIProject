@@ -4,12 +4,12 @@ import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 public class TicketViewer {
-    public static final int PER_PAGE = 25;
-    public static Ticket ticket = new Ticket();
-    public static TicketList ticketList = new TicketList();
-    public static String response;
-    public static boolean hasNext = false, hasPrev = false;
-    public static boolean displayOptions = true;
+    static final int PER_PAGE = 25;
+    static Ticket ticket = new Ticket();
+    static TicketList ticketList = new TicketList();
+    static String response;
+    static boolean hasNext = false, hasPrev = false;
+    static boolean displayOptions = true;
     static final Logger LOGGER = Logger.getLogger(HttpRequest.class.getName());
 
     public static void main(String[] args) {

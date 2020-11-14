@@ -5,11 +5,11 @@ import org.json.simple.parser.JSONParser;
 import java.util.logging.Logger;
 
 public class JsonParser {
-    static final int MAX = 25;
-    static String errorMessage;
-    static final Logger LOGGER = Logger.getLogger(HttpRequest.class.getName());
+    final int MAX = 25;
+    String errorMessage;
+    final Logger LOGGER = Logger.getLogger(HttpRequest.class.getName());
 
-    static Ticket parseSingleTicket(String jsonContent) {
+    Ticket parseSingleTicket(String jsonContent) {
         JSONParser jsonParser = new JSONParser();
         try{
             JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonContent);
@@ -29,7 +29,7 @@ public class JsonParser {
         }
     }
 
-    private static Ticket parseTicketStructure(JSONObject ticketStructure) {
+    private Ticket parseTicketStructure(JSONObject ticketStructure) {
         Ticket ticket = new Ticket();
         if(ticketStructure == null) {
             return null;
@@ -44,7 +44,7 @@ public class JsonParser {
         return ticket;
     }
 
-    public static TicketList parseTicketsList(String jsonContent) {
+    public TicketList parseTicketsList(String jsonContent) {
         TicketList ticketList = new TicketList();
         JSONParser jsonParser = new JSONParser();
 
@@ -82,7 +82,7 @@ public class JsonParser {
     }
 
     // To set the flags for next and previous page.
-    private static void parseNavigationFlags(JSONObject jsonObject, TicketList ticketList) {
+    private void parseNavigationFlags(JSONObject jsonObject, TicketList ticketList) {
         String nextPageUrl = (String) jsonObject.get("next_page");
         String previousPageUrl = (String) jsonObject.get("previous_page");
 

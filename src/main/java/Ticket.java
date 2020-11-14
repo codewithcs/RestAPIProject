@@ -33,7 +33,7 @@ public class Ticket {
             JsonParser jsonParser = new JsonParser();
             Ticket ticket = jsonParser.parseSingleTicket(response);
             if(ticket == null) {
-                return JsonParser.errorMessage;
+                return jsonParser.errorMessage;
             }
 
             ticket.displayTicketData();

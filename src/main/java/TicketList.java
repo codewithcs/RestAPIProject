@@ -1,7 +1,7 @@
 import java.util.logging.Logger;
 
 public class TicketList {
-    public static final String ROUTE = "/api/v2/tickets.json";
+    static final String ROUTE = "/api/v2/tickets.json";
     Ticket[] tickets;
     boolean hasPrevious = false;
     boolean hasNext = false;
@@ -29,7 +29,7 @@ public class TicketList {
             JsonParser jsonParser = new JsonParser();
             TicketList ticketList = jsonParser.parseTicketsList(response);
             if(ticketList == null) {
-                return JsonParser.errorMessage;
+                return jsonParser.errorMessage;
             }
             this.tickets = ticketList.tickets;
             this.hasNext = ticketList.hasNext;
