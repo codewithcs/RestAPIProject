@@ -24,4 +24,4 @@ This is a Maven project including the following important files:
 
 ##Requirements:
 * Apache Maven and external plugins and dependencies specified in pom.xml
-* Java 
+* Java 8
